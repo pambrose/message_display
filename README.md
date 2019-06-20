@@ -6,3 +6,6 @@ the display was cool.
 I wanted to see how hard it would be to do in Flutter. 
 
 It is very reasonable.
+
+
+![](gifs/message_display.gif)
