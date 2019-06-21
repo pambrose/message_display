@@ -19,15 +19,6 @@ class _SwitchDisplayState extends State<SwitchDisplay> {
   static const _rows = 7;
   static const _cols = 9;
 
-  var _vals = [
-    for (int i = 0; i < _rows; i++)
-      [
-        for (int j = 0; j < _cols; j++) false,
-      ]
-  ];
-
-  final _none = toBool([for (int j = 0; j < _cols; j++) ""]);
-
   final List<List<bool>> _fiveZero = toBool([
                                               "1111  11 ",
                                               "1    1  1",
@@ -38,29 +29,25 @@ class _SwitchDisplayState extends State<SwitchDisplay> {
                                               "111   11 ",
                                             ]);
 
-  var _displayed = false;
+  var _display = false;
 
   @override
   Widget build(BuildContext context) {
-    var rows = _rows;
-    var cols = isPortrait(context) ? 4 : _cols;
-
+    final cols = isPortrait(context) ? 4 : _cols;
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          for (int i = 0; i < rows; i++)
+          for (int i = 0; i < _rows; i++)
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 for (int j = 0; j < cols; j++)
                   CupertinoSwitch(
-                    value: _vals[i][j],
-                    onChanged: (value) {
+                    value: _display && _fiveZero[i][j],
+                    onChanged: (_) {
                       setState(() {
-                        _vals = _displayed ? _fiveZero : _none;
-                        _displayed = !_displayed;
-                        //_vals[i][j] = !_vals[i][j];
+                        _display = !_display;
                       });
                     },
                     ),
@@ -69,18 +56,6 @@ class _SwitchDisplayState extends State<SwitchDisplay> {
         ],
         ),
       );
-  }
-
-  String printState() {
-    String str = "[";
-    for (int i = 0; i < _rows; i++) {
-      String row = "";
-      for (int j = 0; j < _cols; j++)
-        row += "${_vals[i][j]} ${j < _cols - 1 ? "," : ""} ";
-      str += "[$row],\n";
-    }
-    str += "];";
-    return str;
   }
 
   static bool isPortrait(BuildContext context) =>
