@@ -18,62 +18,76 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final none = [
-    for (int i = 0; i < 7; i++) [for (int j = 0; j < 9; j++) false]
-  ];
-
-  final some = [
-    [true, true, true, true, false, false, true, true, false],
-    [true, false, false, false, false, true, false, false, true],
-    [true, true, true, false, false, true, false, false, true],
-    [false, false, false, true, false, true, false, false, true],
-    [false, false, false, true, false, true, false, false, true],
-    [false, false, false, true, false, true, false, false, true],
-    [true, true, true, false, false, false, true, true, false],
-  ];
-
   var vals = [
-    for (int i = 0; i < 7; i++) [for (int j = 0; j < 9; j++) false]
+    for (int i = 0; i < 7; i++)
+      [
+        for (int j = 0; j < 9; j++) false,
+      ]
   ];
+
+  final none = [
+    for (int i = 0; i < 7; i++)
+      [
+        for (int j = 0; j < 9; j++) false,
+      ]
+  ];
+
+  final List<List<bool>> fiveZero = intToBool([
+                                                [1, 1, 1, 1, 0, 0, 1, 1, 0],
+                                                [1, 0, 0, 0, 0, 1, 0, 0, 1],
+                                                [1, 1, 1, 0, 0, 1, 0, 0, 1],
+                                                [0, 0, 0, 1, 0, 1, 0, 0, 1],
+                                                [0, 0, 0, 1, 0, 1, 0, 0, 1],
+                                                [0, 0, 0, 1, 0, 1, 0, 0, 1],
+                                                [1, 1, 1, 0, 0, 0, 1, 1, 0],
+                                              ]);
 
   var displayed = false;
 
-  void printState() {
-    String s = "finals some = [";
+  @override
+  Widget build(BuildContext context) =>
+      Scaffold(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            for (int i = 0; i < 7; i++)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  for (int j = 0; j < 9; j++)
+                    CupertinoSwitch(
+                      value: vals[i][j],
+                      onChanged: (value) {
+                        setState(() {
+                          vals = displayed ? fiveZero : none;
+                          displayed = !displayed;
+                          //_vals[i][j] = !_vals[i][j];
+                        });
+                      },
+                      ),
+                ],
+                ),
+          ],
+          ),
+        );
+
+  String printState() {
+    String str = "[";
     for (int i = 0; i < 7; i++) {
-      String t = "";
-      for (int j = 0; j < 9; j++) t += "${vals[i][j]} ${j < 8 ? "," : ""} ";
-      s += "[$t],\n";
+      String row = "";
+      for (int j = 0; j < 9; j++)
+        row += "${vals[i][j]} ${j < 8 ? "," : ""} ";
+      str += "[$row],\n";
     }
-    s += "];";
-    print(s);
+    str += "];";
+    return str;
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          for (int i = 0; i < 7; i++)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                for (int j = 0; j < 9; j++)
-                  CupertinoSwitch(
-                    value: vals[i][j],
-                    onChanged: (value) {
-                      setState(() {
-                        vals = displayed ? some : none;
-                        displayed = !displayed;
-                        //_vals[i][j] = !_vals[i][j];
-                      });
-                    },
-                  ),
-              ],
-            ),
-        ],
-      ),
-    );
-  }
+  static List<List<bool>> intToBool(List<List<int>> ints) =>
+      [
+        for (int i = 0; i < ints.length; i++)
+          [
+            for (int j = 0; j < ints[i].length; j++) ints[i][j] == 1,
+          ]
+      ];
 }
