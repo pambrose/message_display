@@ -1,11 +1,9 @@
-# Flutter Message Display
+# Flutter Switch Display
 
 I saw [this tweet](https://twitter.com/FlutterDev/status/1139200781905727489?ref_src=twsrc%5Etfw) and I thought 
-the display was cool.
+the switch display was cool.
 
-I wanted to see how hard it would be to do in Flutter. 
-
-It is very reasonable.
+I wanted to see how hard it would be to do in Flutter. It is very reasonable.
 
 
-![](gifs/message_display.gif)
+![](gifs/switch_display.gif)

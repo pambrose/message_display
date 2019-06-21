@@ -1,4 +1,4 @@
-package com.example.message_display;
+package com.example.switch_display;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
