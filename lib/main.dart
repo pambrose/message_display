@@ -20,14 +20,14 @@ class _SwitchDisplayState extends State<SwitchDisplay> {
   static const _cols = 9;
 
   final List<List<bool>> _fiveZero = toBool([
-                                              "1111  11 ",
-                                              "1    1  1",
-                                              "111  1  1",
-                                              "   1 1  1",
-                                              "   1 1  1",
-                                              "   1 1  1",
-                                              "111   11 ",
-                                            ]);
+    "1111  11 ",
+    "1    1  1",
+    "111  1  1",
+    "   1 1  1",
+    "   1 1  1",
+    "   1 1  1",
+    "111   11 ",
+  ]);
 
   var _display = false;
 
@@ -50,18 +50,16 @@ class _SwitchDisplayState extends State<SwitchDisplay> {
                         _display = !_display;
                       });
                     },
-                    ),
+                  ),
               ],
-              ),
+            ),
         ],
-        ),
-      );
+      ),
+    );
   }
 
   static bool isPortrait(BuildContext context) =>
-      MediaQuery
-          .of(context)
-          .orientation == Orientation.portrait;
+      MediaQuery.of(context).orientation == Orientation.portrait;
 
   static List<List<bool>> toBool(List<String> strs) =>
       [
