@@ -5,11 +5,14 @@ void main() => runApp(SwitchDisplayApp());
 
 class SwitchDisplayApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => MaterialApp(home: SwitchDisplay());
+  Widget build(BuildContext context) => MaterialApp(
+        home: SwitchDisplay(),
+        debugShowCheckedModeBanner: false,
+      );
 }
 
 class SwitchDisplay extends StatefulWidget {
-  SwitchDisplay({Key key}) : super(key: key);
+  SwitchDisplay({Key? key}) : super(key: key);
 
   @override
   _SwitchDisplayState createState() => _SwitchDisplayState();
