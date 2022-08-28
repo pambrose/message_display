@@ -5,20 +5,20 @@ void main() => runApp(SwitchDisplayApp());
 
 class SwitchDisplayApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => MaterialApp(
+  Widget build(BuildContext context) => const MaterialApp(
         home: SwitchDisplay(),
         debugShowCheckedModeBanner: false,
       );
 }
 
 class SwitchDisplay extends StatefulWidget {
-  SwitchDisplay({Key? key}) : super(key: key);
+  const SwitchDisplay({Key? key}) : super(key: key);
 
   @override
-  _SwitchDisplayState createState() => _SwitchDisplayState();
+  SwitchDisplayState createState() => SwitchDisplayState();
 }
 
-class _SwitchDisplayState extends State<SwitchDisplay> {
+class SwitchDisplayState extends State<SwitchDisplay> {
   var _display = false;
 
   @override
